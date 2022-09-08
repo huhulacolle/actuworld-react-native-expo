@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ActuWorld",
-    "slug": "ActuWorld-React",
+    "slug": "actuworld",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9ac3f6f6-e8fe-4ce6-acdb-34c8d01658c6"
+      }
     }
   }
 }
