@@ -5,6 +5,8 @@ import axios from 'axios';
 import INews from '../interfaces/INews';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { KEY } from "@env" 
+
 export default function News({navigation}: any) {
 
   const [News, setNews] = useState<INews[]>([])
@@ -17,7 +19,7 @@ export default function News({navigation}: any) {
 
   function getNews() {
     setLoading(true);
-    axios.get("http://api.mediastack.com/v1/news?access_key=9175d9524d1e237b10955dd72c17d348&languages=fr")
+    axios.get(`http://api.mediastack.com/v1/news?access_key=${KEY}&languages=fr`)
     .then(
       data => {
         setNews(data.data.data);
