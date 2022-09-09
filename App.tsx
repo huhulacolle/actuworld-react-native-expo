@@ -15,7 +15,7 @@ export default function App() {
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name='SelectedNews' component={SelectedNews} />
       </Stack.Navigator>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </NavigationContainer>
   );
 }

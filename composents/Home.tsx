@@ -8,7 +8,7 @@ export default function Home() {
   const Drawer = createDrawerNavigator();
 
   return (
-  <Drawer.Navigator initialRouteName="Home">
+  <Drawer.Navigator initialRouteName="News">
     <Drawer.Screen name="News" component={News} />
     <Drawer.Screen name='Favoris' component={Favoris} />
   </Drawer.Navigator>

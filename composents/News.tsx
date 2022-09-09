@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Card, Paragraph, Title } from 'react-native-paper';
 import axios from 'axios';
@@ -28,7 +28,15 @@ export default function News({navigation}: any) {
     )
     .catch(
       err => {
-        alert(err);
+        Alert.alert(
+          err.response.data.error.code,
+          err.response.data.error.message,
+          [
+            {
+              text: "OK", onPress: () => {}
+            }
+          ]
+        )
       }
     )
   }
