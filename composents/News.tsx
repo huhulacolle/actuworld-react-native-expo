@@ -11,7 +11,7 @@ export default function News({navigation}: any) {
 
   const [News, setNews] = useState<INews[]>([])
 
-  const [loading, setLoading] = useState<Boolean>(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getNews();
@@ -19,18 +19,18 @@ export default function News({navigation}: any) {
 
   function getNews() {
     setLoading(true);
-    axios.get(`http://api.mediastack.com/v1/news?access_key=${KEY}&languages=fr`)
+    axios.get(`https://gnews.io/api/v4/top-headlines?country=fr&token=${KEY}`)
     .then(
       data => {
-        setNews(data.data.data);
+        setNews(data.data.articles);
         setLoading(false);
       }
     )
     .catch(
       err => {
         Alert.alert(
-          err.response.data.error.code,
-          err.response.data.error.message,
+          `Erreur ${err.response.status}`,
+          err.response.data.errors[0],
           [
             {
               text: "OK", onPress: () => {}
@@ -52,7 +52,7 @@ export default function News({navigation}: any) {
               <Card.Cover source={{ uri: n.image }} />
               <Card.Content>
                 <Title> {n.title} </Title>
-                <Paragraph> {n.source} </Paragraph>
+                <Paragraph> {n.source.name} </Paragraph>
               </Card.Content>
             </Card>  
             )

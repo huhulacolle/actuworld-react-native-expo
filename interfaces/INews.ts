@@ -2,11 +2,12 @@ export default interface INews {
   author: string,
   title: string,
   description: string,
+  content: string,
   url: string,
-  source: string,
   image?: string,
-  category: string,
-  language: string,
-  country: string,
-  published_at: string
+  publishedAt: string
+  source: {
+    name: string,
+    url: string
+  }
 }
