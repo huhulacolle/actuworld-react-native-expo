@@ -25,42 +25,40 @@ export default function SelectedNews({route, navigation}: any) {
   }
   
   return (
-    <View>
+    <Provider>
         <Card.Cover source={{ uri: News.urlToImage }} />
         <Card.Content>
           <Title> {News.title} </Title>
           <Paragraph> {News.description} </Paragraph>
         </Card.Content>
         <Button mode='contained' onPress={async () => await WebBrowser.openBrowserAsync(News.url)} style={styles.button} >Lire l'article</Button>
-        <Provider>
-          <Portal>
-            <FAB.Group
-              open={open}
-              icon={open ? 'close' : 'export-variant'}
-              actions={[
-                {
-                  icon: 'attachment',
-                  onPress: async () => copier(),
-                },
-                {
-                  icon: 'qrcode',
-                  onPress: () => alert("Fonctionnalité pas encore implémentée"),
-                },
-                {
-                  icon: 'export-variant',
-                  onPress: async () => await Share.share({
-                    url: News.url
-                  }),
-                },
-              ]}
-              visible={true}
-              onStateChange={onStateChange}
-              fabStyle={{backgroundColor: 'white' }}
-              color={'grey'}
-            />
-          </Portal>
-      </Provider>
-    </View>
+        <Portal>
+          <FAB.Group
+            open={open}
+            icon={open ? 'close' : 'export-variant'}
+            actions={[
+              {
+                icon: 'attachment',
+                onPress: async () => copier(),
+              },
+              {
+                icon: 'qrcode',
+                onPress: () => alert("Fonctionnalité pas encore implémentée"),
+              },
+              {
+                icon: 'export-variant',
+                onPress: async () => await Share.share({
+                  url: News.url
+                }),
+              },
+            ]}
+            visible={true}
+            onStateChange={onStateChange}
+            fabStyle={{backgroundColor: 'white' }}
+            color={'grey'}
+          />
+        </Portal>
+    </Provider>
   )
 }
 
