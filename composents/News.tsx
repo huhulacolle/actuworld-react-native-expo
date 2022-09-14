@@ -1,4 +1,4 @@
-import { View, Text, Button, Alert, ActivityIndicator } from 'react-native'
+import { View, Button, Alert, ActivityIndicator, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Card, Paragraph, Title } from 'react-native-paper';
 import axios from 'axios';
@@ -43,17 +43,16 @@ export default function News({navigation}: any) {
 
   if (!loading) {
     return (
-      <ScrollView>
-        <Button title='Refresh' onPress={getNews} />
+      <ScrollView style={style.cardview}>
         {
           News.map(n => {
             return (
-            <Card key={n.url} onPress={() => navigation.navigate("SelectedNews", n)}>
+            <Card key={n.url} style={{marginBottom: 10}} onPress={() => navigation.navigate("SelectedNews", n)}>
               <Card.Cover source={{ uri: n.urlToImage }} />
               <Card.Content>
                 <Title> {n.title} </Title>
                 <Paragraph> {n.source.name} </Paragraph>
-              </Card.Content>
+              </Card.Content> 
             </Card>  
             )
           })
@@ -69,3 +68,11 @@ export default function News({navigation}: any) {
     )
   }
 }
+
+const style = StyleSheet.create({
+  cardview: {
+    marginTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10
+  }
+})
