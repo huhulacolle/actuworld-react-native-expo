@@ -17,7 +17,7 @@ export default function News({navigation}: any) {
     getNews();
   }, [])
 
-  function getNews() {
+  function getNews(): void {
     setLoading(true);
     axios.get(`https://newsapi.org/v2/top-headlines?country=fr&apiKey=${KEY}`)
     .then(

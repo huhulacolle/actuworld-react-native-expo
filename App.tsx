@@ -5,11 +5,17 @@ import Home from './composents/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import Search from './composents/Search';
+import { useEffect } from 'react';
+import { createDB } from './services/Database';
 
 export default function App() {
 
   const Stack = createNativeStackNavigator();
 
+  useEffect(() => {
+    createDB();
+  }, [])
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>

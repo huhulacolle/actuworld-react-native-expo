@@ -4,6 +4,7 @@ import INews from '../interfaces/INews'
 import { Button, Card, FAB, Paragraph, Portal, Provider, Title } from 'react-native-paper';
 import * as WebBrowser from 'expo-web-browser';
 import * as Clipboard from 'expo-clipboard';
+import { setFavoris } from '../services/Database';
 
 export default function SelectedNews({route, navigation}: any) {
 
@@ -22,6 +23,10 @@ export default function SelectedNews({route, navigation}: any) {
   async function copier(): Promise<void> {
     await Clipboard.setStringAsync(News.url);
     ToastAndroid.show('Copié dans le presse papier', ToastAndroid.LONG);
+  }
+
+  function favoris(): void {
+    setFavoris(News);
   }
   
   return (
