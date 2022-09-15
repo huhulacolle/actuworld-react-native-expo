@@ -1,10 +1,10 @@
-import { Share, StyleSheet, ToastAndroid, View } from 'react-native'
+import { Share, StyleSheet, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import INews from '../interfaces/INews'
 import { Button, Card, FAB, Paragraph, Portal, Provider, Title } from 'react-native-paper';
 import * as WebBrowser from 'expo-web-browser';
 import * as Clipboard from 'expo-clipboard';
-import { setFavoris } from '../services/Database';
+import { setFavoris } from '../services/Database'
 
 export default function SelectedNews({route, navigation}: any) {
 
@@ -17,16 +17,12 @@ export default function SelectedNews({route, navigation}: any) {
   const { open } = state;
 
   useEffect(() => {
-    navigation.setOptions({ title: News.source.name });
+    navigation.setOptions({ title: News.source.name, });
   })
 
   async function copier(): Promise<void> {
     await Clipboard.setStringAsync(News.url);
     ToastAndroid.show('Copié dans le presse papier', ToastAndroid.LONG);
-  }
-
-  function favoris(): void {
-    setFavoris(News);
   }
   
   return (
@@ -42,6 +38,10 @@ export default function SelectedNews({route, navigation}: any) {
             open={open}
             icon={open ? 'close' : 'export-variant'}
             actions={[
+              {
+                icon: 'star-outline',
+                onPress: async () => setFavoris(News),
+              },
               {
                 icon: 'attachment',
                 onPress: async () => copier(),

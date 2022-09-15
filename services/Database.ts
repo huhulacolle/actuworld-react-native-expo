@@ -37,13 +37,6 @@ export function ExecuteQuery(sql: string, params = []): Promise<any> {
 	})
 }
 
-export function getFavoris() {
-	const db = openDatabase();
-  return db.transaction(tx => 
-		tx.executeSql('SELECT * FROM favoris', []));
-	
-}
-
 export function setFavoris(n: INews): void {
 	const db = openDatabase();
 	db.transaction(q => {
@@ -52,3 +45,4 @@ export function setFavoris(n: INews): void {
 		);
 	})
 }
+
