@@ -44,19 +44,21 @@ export default function News({navigation}: any) {
   if (!loading) {
     return (
       <ScrollView style={style.cardview}>
-        {
-          News.map(n => {
-            return (
-            <Card key={n.url} style={{marginBottom: 10}} onPress={() => navigation.navigate("SelectedNews", n)}>
-              <Card.Cover source={{ uri: n.urlToImage }} />
-              <Card.Content>
-                <Title> {n.title} </Title>
-                <Paragraph> {n.source.name} </Paragraph>
-              </Card.Content> 
-            </Card>  
-            )
-          })
-        }      
+        <View style={{marginTop: 10}}>
+          {
+            News.map(n => {
+              return (
+              <Card key={n.url} style={{marginBottom: 10}} onPress={() => navigation.navigate("SelectedNews", n)}>
+                <Card.Cover source={{ uri: n.urlToImage }} />
+                <Card.Content>
+                  <Title> {n.title} </Title>
+                  <Paragraph> {n.source.name} </Paragraph>
+                </Card.Content> 
+              </Card>  
+              )
+            })
+          }
+        </View>
       </ScrollView>
     )
   }
@@ -71,7 +73,6 @@ export default function News({navigation}: any) {
 
 const style = StyleSheet.create({
   cardview: {
-    marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10
   }

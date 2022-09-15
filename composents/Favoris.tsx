@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Button } from 'react-native-paper'
-import { ExecuteQuery, getFavoris } from '../services/Database'
+import { ExecuteQuery } from '../services/Database'
 
 export default function Favoris() {
 
-  async function testfavoris() {
+  async function testfavoris(): Promise<void> {
     const test = await ExecuteQuery('SELECT * FROM favoris', []);
-    console.log(test.rows);
+    console.log(test.rows._array);
   }
 
   return (
