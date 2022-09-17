@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet, Alert } from 'react-native'
+import { View, ScrollView, StyleSheet, Alert, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Card, Paragraph, Title } from 'react-native-paper'
 import { ExecuteQuery } from '../services/Database'
@@ -39,30 +39,46 @@ export default function Favoris({navigation}: any) {
     )
   }
 
-  return (
-    <ScrollView style={style.cardview}>
-    <View style={{marginTop: 10}}>
-      {
-        News.map(n => {
-          return (
-          <Card key={n.url} style={{marginBottom: 10}} onPress={() => navigation.navigate("SelectedNews", n)}>
-            <Card.Cover source={{ uri: n.urlToImage }} />
-            <Card.Content>
-              <Title> {n.title} </Title>
-              <Paragraph> {n.source} </Paragraph>
-            </Card.Content> 
-          </Card>  
-          )
-        })
-      }
-    </View>
-  </ScrollView>
-  )
+  if (News.length < 1) {
+    return (
+      <View style={style.center}>
+        <Text style={{fontSize: 18}}>
+          Aucun Favoris
+        </Text>
+      </View>
+    )
+  }
+  else {
+    return (
+      <ScrollView style={style.cardview}>
+      <View style={{marginTop: 10}}>
+        {
+          News.map(n => {
+            return (
+            <Card key={n.url} style={{marginBottom: 10}} onPress={() => navigation.navigate("SelectedNews", n)}>
+              <Card.Cover source={{ uri: n.urlToImage }} />
+              <Card.Content>
+                <Title> {n.title} </Title>
+                <Paragraph> {n.source} </Paragraph>
+              </Card.Content> 
+            </Card>  
+            )
+          })
+        }
+      </View>
+    </ScrollView>
+    )
+  }
 }
 
 const style = StyleSheet.create({
   cardview: {
     paddingLeft: 10,
     paddingRight: 10
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex:1
   }
 })

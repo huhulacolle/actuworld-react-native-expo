@@ -1,4 +1,4 @@
-import { View, Button, Alert, ActivityIndicator, StyleSheet } from 'react-native'
+import { View, Alert, ActivityIndicator, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Card, Paragraph, Title } from 'react-native-paper';
 import axios from 'axios';

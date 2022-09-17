@@ -4,11 +4,13 @@ import INews from '../interfaces/INews'
 import { Button, Card, FAB, Paragraph, Portal, Provider, Title } from 'react-native-paper';
 import * as WebBrowser from 'expo-web-browser';
 import * as Clipboard from 'expo-clipboard';
-import { setFavoris } from '../services/Database'
+import { deleteFavoris, favorisVerification, setFavoris } from '../services/Database'
 
 export default function SelectedNews({route, navigation}: any) {
 
   const News: INews = route.params;
+
+  const [Icon, setIcon] = useState("star-outline")
 
   const [state, setState] = useState({ open: false });
 
@@ -18,7 +20,15 @@ export default function SelectedNews({route, navigation}: any) {
 
   useEffect(() => {
     navigation.setOptions({ title: News.source.name, });
+    favorisVerif();
   })
+
+  async function favorisVerif() {
+    const isFav = await favorisVerification(News.url);
+    if (isFav) {
+      setIcon("close-outline")
+    }
+  }
 
   async function copier(): Promise<void> {
     await Clipboard.setStringAsync(News.url);
@@ -39,8 +49,17 @@ export default function SelectedNews({route, navigation}: any) {
             icon={open ? 'close' : 'export-variant'}
             actions={[
               {
-                icon: 'star-outline',
-                onPress: async () => setFavoris(News),
+                icon: Icon,
+                onPress: async () => {
+                  if (Icon == "star-outline") {
+                    setFavoris(News)
+                    ToastAndroid.show('Favoris ajoutés', ToastAndroid.LONG);
+                  }
+                  else {
+                    deleteFavoris(News.url);
+                    ToastAndroid.show('Favoris effacés', ToastAndroid.LONG);
+                  }
+                }
               },
               {
                 icon: 'attachment',
