@@ -1,7 +1,7 @@
 import { Share, StyleSheet, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import INews from '../interfaces/INews'
-import { Button, Card, FAB, Paragraph, Portal, Provider, Title } from 'react-native-paper';
+import { Button, Card, Divider, FAB, Paragraph, Portal, Provider, Title } from 'react-native-paper';
 import * as WebBrowser from 'expo-web-browser';
 import * as Clipboard from 'expo-clipboard';
 import { deleteFavoris, favorisVerification, setFavoris } from '../services/Database'
@@ -40,6 +40,7 @@ export default function SelectedNews({route, navigation}: any) {
         <Card.Cover source={{ uri: News.urlToImage }} />
         <Card.Content>
           <Title> {News.title} </Title>
+          <Divider />
           <Paragraph> {News.description} </Paragraph>
         </Card.Content>
         <Button mode='contained' onPress={async () => await WebBrowser.openBrowserAsync(News.url)} style={styles.button} >Lire l'article</Button>
