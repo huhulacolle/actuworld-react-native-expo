@@ -25,6 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "userInterfaceStyle": "light",
       "package": "com.huhulacolle.actuworld"
     },
     "web": {
