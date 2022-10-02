@@ -26,7 +26,10 @@ export default function SelectedNews({route, navigation}: any) {
   async function favorisVerif() {
     const isFav = await favorisVerification(News.url);
     if (isFav) {
-      setIcon("close-outline")
+      setIcon("close-outline");
+    }
+    else {
+      setIcon("star-outline");
     }
   }
 
