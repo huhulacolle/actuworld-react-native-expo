@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import Search from './composents/Search';
 import { useEffect } from 'react';
 import { createDB } from './services/Database';
+import About from './composents/About';
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
         <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name='SelectedNews' component={SelectedNews} />
         <Stack.Screen name='Search' options={{ title: 'Recherche' }} component={Search} />
+        <Stack.Screen name='About' options={{ title: 'A Propos' }} component={About} />
       </Stack.Navigator>
       <StatusBar style="dark" />
     </NavigationContainer>

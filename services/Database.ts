@@ -63,3 +63,11 @@ export function deleteFavoris(url: string): void {
 	})
 }
 
+export function deleteAllFavoris(): void {
+	const db = openDatabase();
+	db.transaction(q => {
+		q.executeSql(`DELETE FROM favoris`, []
+		);
+	})
+}
+
