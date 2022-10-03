@@ -32,6 +32,7 @@ export function ExecuteQuery(sql: string, params = []): Promise<any> {
 					resolve(results);
 			},
 			(error): any => {
+				console.log(error);
 				reject(error);
 			});
 	});
@@ -50,7 +51,7 @@ export function setFavoris(n: INews): void {
 	const db = openDatabase();
 	db.transaction(q => {
 		q.executeSql(`INSERT INTO favoris (url, urlToImage, source, title, description, content) 
-									VALUES (?, ?, ?, ?, ?, ?)`, [n.url, n.urlToImage as string | number | null, n.source.name, n.title, n.description, n.content]
+									VALUES (?, ?, ?, ?, ?, ?)`, [n.url, n.urlToImage as string, n.source.name, n.title, n.description, n.content]
 		);
 	})
 }
