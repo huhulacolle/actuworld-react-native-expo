@@ -38,7 +38,7 @@ export default function News({navigation}: any) {
 
   function getNews(): void {
     setLoading(true);
-    axios.get(`https://newsapi.org/v2/top-headlines?country=fr&apiKey=${KEY}`)
+    axios.get(`https://newsapi.org/v2/top-headlines?language=fr&apiKey=${KEY}`)
     .then(
       data => {
         setNews(data.data.articles);
