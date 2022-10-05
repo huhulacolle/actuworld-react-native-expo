@@ -14,15 +14,8 @@ export default function News({navigation}: any) {
 
   const [loading, setLoading] = useState(true);
 
-  const [FirstLoading, setFirstLoading] = useState(false);
-
-  const [FirstHours, setFirstHours] = useState(dayjs().add(2, 'hour').toDate().getHours());
-
-  const isFocused = useIsFocused();
-
   useEffect(() => {
     getNews();
-    setFirstLoading(true);
   }, [])
 
   function getNews(): void {
