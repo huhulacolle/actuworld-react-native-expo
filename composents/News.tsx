@@ -4,9 +4,7 @@ import { Card, Paragraph, Title } from 'react-native-paper';
 import axios from 'axios';
 import INews from '../interfaces/INews';
 import { ScrollView } from 'react-native-gesture-handler';
-import { KEY } from "@env" 
-import { useIsFocused } from '@react-navigation/native';
-import dayjs from 'dayjs';
+import { KEY } from "@env";
 
 export default function News({navigation}: any) {
 
