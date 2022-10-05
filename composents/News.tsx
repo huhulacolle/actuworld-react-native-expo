@@ -21,17 +21,6 @@ export default function News({navigation}: any) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    if (isFocused && FirstLoading) {
-      const NewHours = dayjs().add(2, 'hour').toDate().getHours();
-      if (NewHours == 0 || NewHours > FirstHours) {
-        setLoading(true);
-        getNews();
-        setFirstHours(NewHours);
-      }
-    }
-  }, [isFocused])
-
-  useEffect(() => {
     getNews();
     setFirstLoading(true);
   }, [])
